@@ -2,12 +2,12 @@
 
 <p>
   <strong>Blog:</strong>
-  <%= @comment.blog_id %>
+  <%= @comment.blog.title %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @comment.user_id %>
+  <%= @comment.user.full_name %>
 </p>
 
 <p>
@@ -16,4 +16,4 @@
 </p>
 
 <%= link_to 'Edit', edit_blog_comment_path(@blog,@comment) %> |
-<%= link_to 'Back', @blog %> 
+<%= link_to 'Back', @blog %>

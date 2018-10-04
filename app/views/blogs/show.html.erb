@@ -30,8 +30,8 @@
           <%= link_to edit_blog_comment_path(@blog, comment) do %>
             <%= comment.body %>
           <% end %>
-          |
-          <%= link_to 'Destroy', blog_comment_url(@blog, comment), method: :delete, data: { confirm: 'Are you sure?' }  %>
+          | <%= link_to 'Show',blog_comment_path(@blog, comment) %>
+          | <%= link_to 'Destroy', blog_comment_url(@blog, comment), method: :delete, data: { confirm: 'Are you sure?' }  %>
         </li>
         <% end %>
       </ul>
