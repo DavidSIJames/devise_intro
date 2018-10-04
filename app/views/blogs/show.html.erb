@@ -6,7 +6,7 @@
     <div class="card-body">
       <h5 class="card-title"><%= @blog.title%></h5>
       <p class="card-text"><%= @blog.body %></p>
-      <p class="card-text"><%= @blog.user_id %></p>
+      <p class="card-text"><%= @blog.user.full_name%></p>
     </div>
     <div class="card-footer">
       <% if user_signed_in? && current_user.id == @blog.user_id %>
