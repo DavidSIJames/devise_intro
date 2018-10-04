@@ -9,7 +9,7 @@
       <p class="card-text"><%= @blog.user_id %></p>
     </div>
     <div class="card-footer">
-      <% if @blog.user.id == @blog.user_id %>
+      <% if user_signed_in? && current_user.id == @blog.user_id %>
         <%= link_to 'Edit', edit_blog_path(@blog) %>
         <%= link_to 'Delete', @blog, method: :delete, data:{confirm:'Are you Sure?'} %>
       <% else %>
