@@ -1,21 +1,41 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
+  <div class="row">
     <%= link_to 'Back', blogs_path, class: 'btn btn-dark my-4' %>
-  <div class="card" style="width: 18rem;">
-    <%= image_tag @blog.image, class:'img-responsive',height:'300px' %>
-    <div class="card-body">
-      <h5 class="card-title"><%= @blog.title%></h5>
-      <p class="card-text"><%= @blog.body %></p>
-      <p class="card-text"><%= @blog.user.full_name%></p>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card" style="width: 18rem;">
+        <%= image_tag @blog.image, class:'img-responsive',height:'300px' %>
+        <div class="card-body">
+          <h5 class="card-title"><%= @blog.title%></h5>
+          <p class="card-text"><%= @blog.body %></p>
+          <p class="card-text"><%= @blog.user.full_name%></p>
+        </div>
+        <div class="card-footer">
+          <% if user_signed_in? && current_user.id == @blog.user_id %>
+          <%= link_to 'Edit', edit_blog_path(@blog) %>
+          <%= link_to 'Delete', @blog, method: :delete, data:{confirm:'Are you Sure?'} %>
+          <% else %>
+          <p>What u looking at punk?</p>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="card-footer">
-      <% if user_signed_in? && current_user.id == @blog.user_id %>
-        <%= link_to 'Edit', edit_blog_path(@blog) %>
-        <%= link_to 'Delete', @blog, method: :delete, data:{confirm:'Are you Sure?'} %>
-      <% else %>
-        <p>What u looking at punk?</p>
+    <div class="col-md-6">
+      <%= link_to "New Comment", new_blog_comment_path(@blog)%>
+      <ul>
+        <% @blog.comments.each do |comment| %>
+        <li>
+          <%= link_to edit_blog_comment_path(@blog, comment) do %>
+            <%= comment.body %>
+          <% end %>
+          |
+          <%= link_to 'Destroy', blog_comment_url(@blog, comment), method: :delete, data: { confirm: 'Are you sure?' }  %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
 
-      <% end %>
-    </div>
   </div>
 </div>
